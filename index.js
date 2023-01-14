@@ -1,23 +1,17 @@
-const useState = (초깃값) => {
-	let 상태 = 초깃값
-
-	function 읽기() {
-		return 상태
-	}
-
-	function 쓰기(새값) {
-		상태 = 새값
-	}
-
-	return [읽기, 쓰기]
+function outerFunc() {
+  var x = 10;
+  var innerFunc = function () { 
+    console.log(x);
+    debugger
+   };
+  
+  return innerFunc;
 }
-const [읽기, 쓰기] = useState(0)
-// const 읽기 = 배열[0]
-// const 쓰기 = 배열[1]
-console.log(읽기()) // 0
-쓰기(읽기() + 1)
-console.log(읽기()) // 1
 
-// debugger
-// a[0] // 읽기
-// a[1] // 쓰기
+/**
+ *  함수 outerFunc를 호출하면 내부 함수 innerFunc가 반환된다.
+ *  그리고 함수 outerFunc의 실행 컨텍스트는 소멸한다.
+ */
+var inner = outerFunc(); // inner 에 할당해줌으로써 outerFunc 은 끝난거다
+
+inner(); // 10  , inner() = ineerFunc 을 실행시켜줌
